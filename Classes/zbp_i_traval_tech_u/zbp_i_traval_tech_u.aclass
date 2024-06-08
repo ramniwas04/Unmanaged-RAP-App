@@ -1,0 +1,5 @@
+CLASS zbp_i_traval_tech_u DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_traval_tech_u.
+ENDCLASS.
+
+CLASS zbp_i_traval_tech_u IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,59 @@
+unmanaged implementation in class zbp_i_traval_tech_u unique;
+strict ( 2 );
+
+define behavior for ZI_TRAVAL_TECH_U alias Travel
+implementation in class zbp_traval_tech_u unique
+late numbering
+lock master
+authorization master ( global )
+etag master LastChangedAt
+{
+  create;
+  update;
+  delete;
+  field ( readonly ) TravelID, LastChangedAt;
+  field ( mandatory ) AgencyID, CustomerID, BeginDate, EndDate;
+  association _Booking { create ( features : instance ); }
+  mapping for /dmo/travel control /dmo/s_travel_intx
+    {
+      AgencyID      = agency_id;
+      BeginDate     = begin_date;
+      BookingFee    = booking_fee;
+      CurrencyCode  = currency_code;
+      CustomerID    = customer_id;
+      EndDate       = end_date;
+      LastChangedAt = lastchangedat;
+      Memo          = description;
+      Status        = status;
+      TotalPrice    = total_price;
+      TravelID      = travel_id;
+    }
+
+
+}
+
+define behavior for ZI_BOOKING_TECH_U alias Booking
+implementation in class zbp_booking_tech_u unique
+late numbering
+lock dependent by _Travel
+authorization dependent by _Travel
+etag dependent by _Travel
+{
+  update;
+  delete;
+  field ( readonly ) TravelID, BookingID;
+  field ( mandatory ) BookingDate, CustomerID, AirlineID, ConnectionID, FlightDate;
+  association _Travel;
+  mapping for /dmo/booking control /dmo/s_booking_intx
+    {
+      AirlineID    = carrier_id;
+      BookingDate  = booking_date;
+      BookingID    = booking_id;
+      ConnectionID = connection_id;
+      CurrencyCode = currency_code;
+      CustomerID   = customer_id;
+      FlightDate   = flight_date;
+      FlightPrice  = flight_price;
+      TravelID     = travel_id;
+    }
+}

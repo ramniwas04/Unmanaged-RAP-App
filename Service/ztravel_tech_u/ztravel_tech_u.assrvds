@@ -1,0 +1,16 @@
+@EndUserText.label: 'Service defination Unmanaged'
+define service ZTRAVEL_TECH_U {
+  expose ZC_Travel_tech_U;
+  expose ZC_Booking_tech_U       as Booking;
+  expose /DMO/I_Supplement       as Supplement;
+  expose /DMO/I_SupplementText   as SupplementText;
+  expose /DMO/I_Customer         as Passenger;
+  expose /DMO/I_Agency           as TravelAgency;
+  expose I_Currency              as Currency;
+  expose I_Country               as Country;
+  expose /DMO/I_Carrier          as Airline;
+  expose /DMO/I_Connection       as FlightConnection;
+  expose /DMO/I_Flight           as Flight;
+  expose /DMO/I_Airport          as Airport;
+  expose /DMO/I_Travel_Status_VH as TravelStatusVH;
+}
